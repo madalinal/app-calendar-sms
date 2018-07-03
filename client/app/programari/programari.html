@@ -1,10 +1,39 @@
 <navbar></navbar>
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>Programari view</h1>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+<div class="long-title"><h3>DXCinema Show Times</h3></div>
+<div id="scheduler" dx-scheduler="options" dx-item-alias="showtime">
+  <div data-options="dxTemplate: {name: 'appointment-template'}">
+    <div class='showtime-preview'>
+      <div>{{getMovieById(showtime.movieId).text}}</div>
+      <div>Ticket Price:
+        <strong>${{showtime.price}}</strong>
+      </div>
+      <div>
+        {{(showtime.startDate | date:'h:mm a') + ' - ' + (showtime.endDate | date:'h:mm a')}}
+      </div>
+    </div>
   </div>
-</header>
 
+  <div data-options="dxTemplate: {name: 'tooltip-template'}">
+    <div class='movie-tooltip' ng-init="movieData = getMovieById(showtime.movieId)">
+      <img ng-src="{{movieData.image}}" />
+      <div class='movie-info'>
+        <div class='movie-title'>
+          {{movieData.text + ' (' + movieData.year + ')'}}
+        </div>
+        <div>
+          {{'Director: ' + movieData.director}}
+        </div>
+        <div>
+          {{'Duration: ' + movieData.duration + ' minutes'}}
+        </div>
+      </div><br />
+      <div dx-button = "{
+                        text: 'Edit details',
+                        onClick: 'editDetails(showtime)',
+                        type: 'default'
+                    }"></div>
+    </div>
+  </div>
+</div>
 <footer></footer>

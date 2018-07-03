@@ -8,7 +8,8 @@ angular.module('appCalendarSms2App', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'validation.match'
+  'validation.match',
+  'dx'
 ])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider
